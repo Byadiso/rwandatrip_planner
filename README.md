@@ -1,6 +1,12 @@
+# Rwanda Trip Planner – Activity Modal Component
+
+A **React-based interactive activity planner** component for travelers visiting Rwanda. This project allows users to add, edit, and save activities with **location search, geocoding, time, and category selection**, all directly in the browser without a backend server.
+
+The location search uses **OpenStreetMap’s Nominatim API**, avoiding CORS issues and making it fully client-side.
+
+---
 
 
-````markdown
 ## Features
 
 * **Add/Edit Activities** – Users can input an activity title, location, time, and category.
@@ -65,12 +71,6 @@ All activities can be managed in a **parent component**, which handles saving an
 * **Extensibility**: You can integrate a **map preview** with Leaflet or Google Maps for better user experience.
 * **Styling**: Tailwind classes can be customized or replaced with any CSS framework.
 
----
-
-## Author
-
-BYAMUNGU Desire
-
 ## Future Enhancements
 
 * Map visualization of selected locations.
@@ -78,7 +78,10 @@ BYAMUNGU Desire
 * Integration with Firebase or another backend for persistent storage.
 * Multi-day itinerary planner for Rwanda trips.
 
----
+
+## Author
+
+BYAMUNGU Desire
 
 ## License
 

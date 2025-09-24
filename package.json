@@ -11,6 +11,7 @@
     "ajv-keywords": "^5.1.0",
     "firebase": "^12.0.0",
     "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
     "lucide-react": "^0.542.0",
     "node-fetch": "^2.7.0",
     "react": "^19.1.1",

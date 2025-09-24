@@ -1,70 +1,85 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+````markdown
+## Features
 
-In the project directory, you can run:
+* **Add/Edit Activities** – Users can input an activity title, location, time, and category.
+* **Location Search with Autocomplete** – Real-time location suggestions powered by **Nominatim OpenStreetMap API**.
+* **Coordinates Display** – Selected location coordinates are displayed for reference.
+* **Debounced Search** – Optimized search with a 300ms debounce to reduce API calls.
+* **Category Selector** – Choose activity type: Culture, Food, Adventure, Nature, or Other.
+* **Responsive Modal** – Mobile-friendly modal overlay for a smooth user experience.
+* **Pure Frontend** – No backend required; all API calls are handled client-side.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* **React** – Frontend component architecture.
+* **JavaScript (ES6+)** – Logic and state management.
+* **Tailwind CSS** – Styling for quick and clean UI.
+* **OpenStreetMap Nominatim API** – Geocoding and location search.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+1. Clone the repository:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/yourusername/rwanda-trip-planner.git
+````
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+3. Start the development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+1. Open the **Activity Modal** to add or edit an activity.
+2. Enter the **activity title**.
+3. Start typing the **location** – suggestions appear automatically.
+4. Select a suggestion to populate the **coordinates**.
+5. Set the **time** and choose a **category**.
+6. Click **Save** to save the activity or **Cancel** to discard.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+All activities can be managed in a **parent component**, which handles saving and storing activity data (local state, Firebase, or any backend of your choice).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* **API Usage**: The Nominatim API is free for limited requests. Avoid spamming queries to comply with their usage policy.
+* **Extensibility**: You can integrate a **map preview** with Leaflet or Google Maps for better user experience.
+* **Styling**: Tailwind classes can be customized or replaced with any CSS framework.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Author
 
-### Making a Progressive Web App
+BYAMUNGU Desire
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Future Enhancements
 
-### Advanced Configuration
+* Map visualization of selected locations.
+* Offline storage for activities using IndexedDB or localStorage.
+* Integration with Firebase or another backend for persistent storage.
+* Multi-day itinerary planner for Rwanda trips.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT License – free to use, modify, and distribute.

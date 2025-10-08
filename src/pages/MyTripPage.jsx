@@ -21,6 +21,9 @@ export default function TripPage() {
   const [editingActivityIndex, setEditingActivityIndex] = useState(null);
   const [initialActivityData, setInitialActivityData] = useState(null);
 
+
+  const handleAddTrip = async () => { try { const newTrip = { name: `Trip ${trips.length + 1}`, createdAt: new Date() }; const tripDocRef = await addDoc(collection(db, "trips"), newTrip); const updatedTrips = [ ...trips, { id: tripDocRef.id, ...newTrip, days: [] } ]; setTrips(updatedTrips); } catch (error) { console.error("Error creating trip:", error); } };
+
   const fetchTrips = async () => {
     try {
       const tripsSnapshot = await getDocs(collection(db, "trips"));
@@ -264,7 +267,7 @@ export default function TripPage() {
           </div>
         ))}
 
-        {trips.length === 0 && <p className="text-gray-500">No trips available. Click Add Day to create one.</p>}
+        {trips.length === 0 && ( <div className="flex flex-col items-center gap-3 mt-8"> <p className="text-gray-500">No trips yet. Start your journey!</p> <button onClick={handleAddTrip} className="flex items-center gap-1 px-4 py-2 rounded-full border border-orange-400 text-orange-600 font-semibold hover:bg-orange-50" > <Plus className="w-4 h-4" /> Start a Trip </button> </div> )}
       </main>
 
       <ActivityModal

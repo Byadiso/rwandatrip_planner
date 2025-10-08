@@ -1,3 +1,4 @@
+
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -178,24 +179,44 @@ export default function MapPage() {
           const tripId = tripDoc.id;
           const daysSnap = await getDocs(collection(db, `trips/${tripId}/days`));
 
-          for (const dayDoc of daysSnap.docs) {
+          // sort days so they connect in the right order
+          const orderedDays = daysSnap.docs.sort((a, b) => {
+            const d1 = a.data().dayNumber || 0;
+            const d2 = b.data().dayNumber || 0;
+            return d1 - d2;
+          });
+
+          let prevLastMarker = null;
+
+          for (const dayDoc of orderedDays) {
             const dayData = dayDoc.data();
             const dayLabel = dayData.dayNumber ? `Day ${dayData.dayNumber}` : dayData.date || "Day";
             if (!dayData.activities || dayData.activities.length === 0) continue;
 
-            const dayMarkers = dayData.activities
+            // sort activities inside day
+            const orderedActivities = [...dayData.activities].sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            const dayMarkers = orderedActivities
               .filter(a => a.coords)
               .map(a => ({
-                position: a.coords, // must already exist in your DB
+                position: a.coords,
                 label: dayLabel,
                 description: `${a.title || "Activity"} @ ${a.location}`
               }));
 
             allMarkers.push(...dayMarkers);
 
+            // routes inside the same day
             for (let i = 0; i < dayMarkers.length - 1; i++) {
               allRoutes.push([L.latLng(dayMarkers[i].position), L.latLng(dayMarkers[i + 1].position)]);
             }
+
+            // connect last of previous day → first of this day
+            if (prevLastMarker && dayMarkers.length > 0) {
+              allRoutes.push([L.latLng(prevLastMarker.position), L.latLng(dayMarkers[0].position)]);
+            }
+
+            prevLastMarker = dayMarkers[dayMarkers.length - 1];
           }
         }
 
@@ -213,7 +234,7 @@ export default function MapPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <TabBar active={activeTab} setActive={setActiveTab} onHome={() => navigate("/")} onTrip={() => navigate("/trip")} />
+      <TabBar active={activeTab} setActive={setActiveTab} onHome={() => navigate("/")} onTrip={() => navigate("/my-trip")} />
       <main className="flex-1 relative">
         <div className="h-[70vh] w-full">
           <MapContainer center={[-1.9441, 30.0619]} zoom={12} className="h-full w-full z-0" zoomControl={false}>
@@ -233,3 +254,4 @@ export default function MapPage() {
     </div>
   );
 }
+
